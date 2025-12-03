@@ -94,3 +94,11 @@ FROM accounts a
 JOIN transactions t ON a.account_id=t.accountid
 GROUP BY a.account_id , a.account_number
 ORDER BY nbr_transactions DESC
+
+-- Afficher le total du balance de tous les accounts d’un customer
+
+SELECT c.customer_id,c.full_name, SUM(a.balance) AS total_balaces
+FROM customers c
+JOIN accounts a ON c.customer_id = a.customerid 
+GROUP BY c.customer_id, c.full_name;
+
