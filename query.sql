@@ -77,3 +77,9 @@ SELECT * FROM Transactions ORDER BY transaction_date DESC;
 
 -- 22. Afficher les 3 dernières transactions
 SELECT * FROM Transactions ORDER BY transaction_date DESC LIMIT 3;
+
+-- 23. Afficher chaque account avec le nom du customer et le nom de l'advisor (JOIN)
+SELECT a.account_id,a.account_number,a.balance,a.account_type,c.full_name AS customer_name,adv.full_name AS advisor_name
+FROM Accounts a
+JOIN Customers c ON a.customerid = c.customer_id
+JOIN Advisors adv ON a.advisorid = adv.advisor_id;
