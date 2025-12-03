@@ -23,6 +23,10 @@ SELECT * FROM Transactions;
 -- 8. Afficher les accounts avec un balance > 10000
 SELECT * FROM Accounts WHERE balance > 10000;
 
+UPDATE Accounts 
+SET balance = 0
+WHERE account_id = 202;
+
 -- 9. Afficher les accounts avec un balance ≤ 0
 SELECT * FROM Accounts WHERE balance <= 0;
 
@@ -102,3 +106,9 @@ FROM customers c
 JOIN accounts a ON c.customer_id = a.customerid 
 GROUP BY c.customer_id, c.full_name;
 
+-- Afficher le total des montants debit et credit par account
+
+SELECT a.account_number,SUM(t.transaction_type='debit')AS total_debit,SUM(t.transaction_type = 'credit') AS total_credit
+FROM Accounts a
+LEFT JOIN Transactions t ON a.account_id = t.accountid
+GROUP BY a.account_id, a.account_number;
