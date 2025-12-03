@@ -112,3 +112,9 @@ SELECT a.account_number,SUM(t.transaction_type='debit')AS total_debit,SUM(t.tran
 FROM Accounts a
 LEFT JOIN Transactions t ON a.account_id = t.accountid
 GROUP BY a.account_id, a.account_number;
+
+-- Ajouter une colonne created_at dans Accounts
+
+ALTER TABLE Accounts 
+ADD created_at DATE;
+-- SELECT * FROM Accounts;
