@@ -83,3 +83,14 @@ SELECT a.account_id,a.account_number,a.balance,a.account_type,c.full_name AS cus
 FROM Accounts a
 JOIN Customers c ON a.customerid = c.customer_id
 JOIN Advisors adv ON a.advisorid = adv.advisor_id;
+
+
+-- BONUS
+
+-- Compter le nombre de transactions par account
+
+SELECT a.account_number , COUNT(t.transaction_id) AS nbr_transactions 
+FROM accounts a
+JOIN transactions t ON a.account_id=t.accountid
+GROUP BY a.account_id , a.account_number
+ORDER BY nbr_transactions DESC
